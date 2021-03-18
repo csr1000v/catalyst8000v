@@ -1,0 +1,303 @@
+Current configuration : 8590 bytes
+!
+! Last configuration change at 19:15:43 UTC Thu Mar 18 2021 by cisco
+!
+version 17.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CiscoCatalyst8000v
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition GS
+ rd 100:100
+ !
+ address-family ipv4
+ exit-address-family
+!
+logging persistent size 1000000 filesize 8192 immediate
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication login sslvpn local
+aaa authorization exec default local none 
+aaa authorization network sslvpn local 
+!
+!
+!
+!
+!
+!
+aaa session-id common
+!         
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+crypto pki trustpoint anyconnectvpn
+ enrollment selfsigned
+ subject-name CN=13.66.194.122
+ revocation-check none
+ rsakeypair anyconnect
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030 
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363 
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934 
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305 
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720 
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D 
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520 
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE 
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC 
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188 
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7 
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191 
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44 
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201 
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85 
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500 
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905 
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B 
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8 
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C 
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B 
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678 
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB 
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0 
+  D697DF7F 28
+  	quit
+crypto pki certificate chain anyconnectvpn
+ certificate self-signed 02
+  308203A8 30820290 A0030201 02020102 300D0609 2A864886 F70D0101 05050030 
+  6D311630 14060355 0403130D 31332E36 362E3139 342E3132 32315330 5106092A 
+  864886F7 0D010902 16444369 73636F43 6174616C 79737438 30303076 2E6A7275 
+  746E6172 32797871 656C6365 6D7A306B 6F786735 6930682E 78782E69 6E746572 
+  6E616C2E 636C6F75 64617070 2E6E301E 170D3231 30333039 32323235 30365A17 
+  0D333130 33303932 32323530 365A306D 31163014 06035504 03130D31 332E3636 
+  2E313934 2E313232 31533051 06092A86 4886F70D 01090216 44436973 636F4361 
+  74616C79 73743830 3030762E 6A727574 6E617232 79787165 6C63656D 7A306B6F 
+  78673569 30682E78 782E696E 7465726E 616C2E63 6C6F7564 6170702E 6E308201 
+  22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201 0100C994 
+  C6D47E50 B84C2CE4 57A0222F 790A871D 8F293519 6FE7F305 5F6FC361 18217C26 
+  97A05227 E465D152 ECAB10BB D4BAEE07 C61E7557 2C0595F4 0C4B8DA7 FD9E2698 
+  4A10753C 7E1FC179 99F67C76 B0863BC7 BA79CFA3 FB6EFBA8 B0F825DE 66951125 
+  62959361 1101A702 0811CD4E CBA1FBC9 397D04F1 71223200 5E005927 C51BDA40 
+  942DBD6F 5A80CB97 ACCBA0FA DDD3FDC7 F3B34168 0677682B 49A0E36B 214BE4DA 
+  4E80A6A3 6A0590F6 46ECFEBF 3C5651F7 84B326F5 5C7EBEF3 EC5EFEB5 5DBA1AA0 
+  D4969F13 BEFF11A1 3049C5FF 5DB3B439 54E565FB E7E9A7A3 EE862E5D 8184B781 
+  DC2136E0 43CB40EA B8EFF5B9 AD4F9063 65C7F30C 7B7611DE 19CF02E0 C82F0203 
+  010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 551D2304 
+  18301680 14687895 4B279F9C 2989F0A7 9D50A5BB BBE0BBE9 23301D06 03551D0E 
+  04160414 6878954B 279F9C29 89F0A79D 50A5BBBB E0BBE923 300D0609 2A864886 
+  F70D0101 05050003 82010100 9037C976 D4897053 C20C52A9 08FC7464 6634EC5A 
+  7F21FE0C 5108F386 2BA86210 F8C907E1 AA9F5C16 E5C4DCD1 43620D47 CA50A87E 
+  5701F0F0 11CCCC3E B8415458 3EFAD3F2 C77BAF60 794D08D9 018BFF99 7BF17966 
+  EC6AF413 6469D8D4 24A0D047 A041E091 69D3C634 A803486B A4298AB6 97E4AF73 
+  A49B0966 093E39FC 9CCE8B4D 96628A89 D8717DA0 BD187B9E AEAA79E0 09AEC47E 
+  8F62809F 79A2ED40 142709AC 05692F29 58D2B049 8C639999 7BD12DFC B6F41C15 
+  D0DA90A4 3C53C39D A0B9BE76 1662BFE5 F0648DB3 78F8A12A 80C37828 6DF685F7 
+  6688CB60 ACDAF2AF A17CFA69 5094427A A9B0452E 467659E9 3A3A5F37 A0B48AD7 
+  61F77F56 FD6AD1DF 5B619D82
+  	quit
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid C8000V sn 95ISDA213ZE
+license boot level network-premier addon dna-premier
+diagnostic bootup level minimal
+memory free low-watermark processor 69173
+!
+!
+spanning-tree extend system-id
+!
+username cisco privilege 15 secret 9 $9$VbU6FQGvVvj5dU$t4CSejdqPgPF9qK8RCvgdiwar33VfIO0nt4lPIgodjc
+username Anyconnect password 7 1324190B08030A242E273C626771
+username cisco1 password 7 13061E010803557878
+username story password 7 105D1D16170E43595F
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+! 
+crypto ssl proposal sslvpn-proposal 
+ protection rsa-aes128-sha1 rsa-aes256-sha1
+!
+crypto ssl authorization policy sslvpn-auth-policy 
+ client profile Catalyst8000vVPN
+ pool SSL_Client
+ dns 8.8.8.8
+ banner Welcome to the Cisco Catalyst 8000v SSL VPN
+ route set access-list sslvpn-tunnel
+!
+crypto ssl policy sslvpn-policy 
+ ssl proposal sslvpn-proposal
+ pki trustpoint anyconnectvpn sign
+ ip address local 10.0.4.4 port 443
+!
+crypto ssl profile sslvpn-profile 
+ match policy sslvpn-policy 
+ aaa authentication user-pass list sslvpn 
+ aaa authorization group user-pass list sslvpn sslvpn-auth-policy 
+ authentication remote user-pass 
+ max-users 100
+!
+!
+crypto vpn anyconnect bootflash:/webvpn/anyconnect-macos-4.9.05042-webdeploy-k9.pkg sequence 1
+!
+crypto vpn anyconnect profile Catalyst8000vVPN bootflash:/CiscoCatalyst8000v.xml
+!
+!
+!
+!         
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface VirtualPortGroup0
+ vrf forwarding GS
+ ip address 192.168.35.101 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ ip address dhcp
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+iox
+ip local pool SSL_Client 10.0.4.5 10.0.4.20
+ip forward-protocol nd
+ip tcp window-size 8192
+ip http server
+ip http authentication local
+no ip http secure-server
+!
+ip nat inside source list GS_NAT_ACL interface GigabitEthernet1 vrf GS overload
+ip route 0.0.0.0 0.0.0.0 10.0.4.1
+ip route vrf GS 0.0.0.0 0.0.0.0 GigabitEthernet1 10.0.4.1 global
+ip ssh rsa keypair-name ssh-key
+ip ssh version 2
+ip ssh server algorithm publickey ecdsa-sha2-nistp256 ecdsa-sha2-nistp384 ecdsa-sha2-nistp521 ssh-rsa x509v3-ecdsa-sha2-nistp256 x509v3-ecdsa-sha2-nistp384 x509v3-ecdsa-sha2-nistp521
+ip scp server enable
+!
+ip access-list standard GS_NAT_ACL
+ 10 permit 192.168.35.0 0.0.0.255
+ip access-list standard sslvpn-tunnel
+ 10 permit 10.0.0.0 0.255.255.255
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+mgcp behavior rsip-range tgcp-only
+mgcp behavior comedia-role none
+mgcp behavior comedia-check-media-src disable
+mgcp behavior comedia-sdp-force disable
+!
+mgcp profile default
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ transport input ssh
+line vty 5 20
+ transport input ssh
+!
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!         
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway1 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.35.102 netmask 255.255.255.0
+ app-default-gateway 192.168.35.101 guest-interface 0
+ name-server0 8.8.8.8
+end
